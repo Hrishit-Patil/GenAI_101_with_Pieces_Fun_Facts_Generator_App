@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crocodile Facts</title>
+    <style>
+    :root {
+        --croc-green: #4CAF50;
+        --croc-dark: #388E3C;
+        --croc-light: #A5D6A7;
+        --croc-accent: #81C784;
+        --white: #fff;
+        --twitter-blue: #1DA1F2;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Segoe UI', Arial, sans-serif;
+        background: linear-gradient(135deg, var(--croc-green) 0%, var(--croc-light) 100%);
+        min-height: 100vh;
+        color: var(--croc-dark);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .container {
+        background: var(--white);
+        border-radius: 24px;
+        box-shadow: 0 8px 32px rgba(44, 62, 80, 0.15);
+        padding: 2rem 1.5rem 2.5rem 1.5rem;
+        max-width: 420px;
+        width: 100%;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    header {
+        margin-bottom: 1.5rem;
+    }
+
+    .crocodile-icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 0.5rem;
+        animation: wiggle 2.5s infinite;
+    }
+
+    @keyframes wiggle {
+        0%, 100% { transform: rotate(-2deg); }
+        50% { transform: rotate(2deg); }
+    }
+
+    h1 {
+        font-size: 2rem;
+        color: var(--croc-green);
+        margin: 0;
+        letter-spacing: 1px;
+    }
+
+    .fact {
+        font-size: 1.15rem;
+        background: var(--croc-accent);
+        color: var(--croc-dark);
+        border-radius: 12px;
+        padding: 1.2rem 1rem;
+        margin-bottom: 1.5rem;
+        min-height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.3s;
+        box-shadow: 0 2px 8px rgba(44, 62, 80, 0.07);
+        opacity: 0;
+        animation: fadeIn 0.7s forwards;
+    }
+
+    .fade-in {
+        animation: fadeIn 0.7s forwards;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(16px);}
+        to { opacity: 1; transform: translateY(0);}
+    }
+
+    .buttons {
+        display: flex;
+        gap: 0.75rem;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+        flex-wrap: wrap;
+    }
+
+    .action-btn, .twitter-btn {
+        background: var(--croc-green);
+        color: var(--white);
+        border: none;
+        border-radius: 8px;
+        padding: 0.7rem 1.2rem;
+        font-size: 1rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+        box-shadow: 0 2px 6px rgba(44, 62, 80, 0.08);
+    }
+
+    .action-btn:hover, .twitter-btn:hover {
+        background: var(--croc-dark);
+        transform: translateY(-2px) scale(1.03);
+    }
+
+    .twitter-btn {
+        background: var(--twitter-blue);
+    }
+
+    .twitter-btn svg {
+        vertical-align: middle;
+    }
+
+    .crocodile-img {
+        margin-top: 1.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+    }
+
+    .crocodile-img img {
+        width: 120px;
+        max-width: 100%;
+        filter: drop-shadow(0 4px 12px rgba(44, 62, 80, 0.10));
+        border-radius: 12px;
+        animation: bounce 3s infinite;
+    }
+
+    @keyframes bounce {
+        0%, 100% { transform: translateY(0);}
+        50% { transform: translateY(-8px);}
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            padding: 1rem 0.5rem 1.5rem 0.5rem;
+            max-width: 98vw;
+        }
+        .fact {
+            font-size: 1rem;
+            padding: 1rem 0.5rem;
+        }
+        h1 {
+            font-size: 1.4rem;
+        }
+        .crocodile-img img {
+            width: 80px;
+        }
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="crocodile-icon" aria-hidden="true">
+                <!-- Inline SVG Crocodile Icon -->
+                <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+                    <ellipse cx="32" cy="32" rx="30" ry="20" fill="#4CAF50" />
+                    <ellipse cx="48" cy="32" rx="8" ry="4" fill="#388E3C" />
+                    <ellipse cx="16" cy="32" rx="8" ry="4" fill="#388E3C" />
+                    <ellipse cx="40" cy="28" rx="2" ry="1" fill="#fff" />
+                    <ellipse cx="24" cy="28" rx="2" ry="1" fill="#fff" />
+                    <ellipse cx="40" cy="28" rx="0.5" ry="0.5" fill="#222" />
+                    <ellipse cx="24" cy="28" rx="0.5" ry="0.5" fill="#222" />
+                </svg>
+            </div>
+            <h1>Crocodile Facts</h1>
+        </header>
+        <main>
+            <div id="fact" class="fact fade-in">
+                <!-- Fact will appear here -->
+            </div>
+            <div class="buttons">
+                <button id="randomFactBtn" class="action-btn">
+                    <span>Show Random Fact</span>
+                </button>
+                <button id="twitterShareBtn" class="twitter-btn" aria-label="Share on Twitter">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="#1DA1F2">
+                        <path d="M22.46 5.924c-.793.352-1.645.59-2.54.698a4.48 4.48 0 0 0 1.963-2.476 8.94 8.94 0 0 1-2.828 1.082 4.48 4.48 0 0 0-7.64 4.086A12.72 12.72 0 0 1 3.11 4.86a4.48 4.48 0 0 0 1.39 5.976 4.44 4.44 0 0 1-2.03-.56v.057a4.48 4.48 0 0 0 3.6 4.393 4.5 4.5 0 0 1-2.025.077 4.48 4.48 0 0 0 4.18 3.11A8.98 8.98 0 0 1 2 19.54a12.67 12.67 0 0 0 6.88 2.02c8.26 0 12.78-6.84 12.78-12.78 0-.195-.004-.39-.013-.583A9.14 9.14 0 0 0 24 4.59a8.93 8.93 0 0 1-2.54.698z"/>
+                    </svg>
+                    <span>Share on Twitter</span>
+                </button>
+            </div>
+            <div class="crocodile-img">
+                <!-- Decorative Crocodile Image -->
+                <img src="https://cdn.pixabay.com/photo/2013/07/12/15/55/crocodile-150308_1280.png" alt="Crocodile illustration">
+            </div>
+        </main>
+    </div>
+    <script>
+    const facts = [
+        "Crocodiles have existed for about 200 million years, making them one of the oldest living reptiles.",
+        "They have one of the strongest bites in the animal kingdom, with a force up to 3,700 pounds per square inch.",
+        "Crocodiles can hold their breath underwater for up to an hour.",
+        "The largest crocodile ever recorded was over 23 feet long and weighed around 2,268 pounds.",
+        "Crocodiles can replace each of their 80 teeth up to 50 times during their lifetime.",
+        "Unlike most reptiles, crocodiles have a four-chambered heart, similar to birds and mammals.",
+        "They have excellent night vision, which helps them hunt in the dark.",
+        "Crocodiles communicate with each other using vocalizations like growls, hisses, and roars.",
+        "They can swim at speeds of up to 20 miles per hour in short bursts using their powerful tails.",
+        "Crocodiles are known to use tools, such as balancing sticks on their snouts to lure birds.",
+        "The temperature of the nest determines the sex of crocodile hatchlings: warmer nests produce males, cooler nests produce females.",
+        "Some species, like the saltwater crocodile, have special glands in their tongues to excrete excess salt, allowing them to live in salty environments.",
+        "Crocodiles have a special valve in their throat that lets them open their mouths underwater without swallowing water.",
+        "They can live up to 70–100 years, with some individuals living even longer in captivity.",
+        "Despite their tough appearance, crocodile skin is very sensitive to touch and pressure."
+    ];
+
+    const factDiv = document.getElementById('fact');
+    const randomFactBtn = document.getElementById('randomFactBtn');
+    const twitterShareBtn = document.getElementById('twitterShareBtn');
+
+    let lastFactIndex = -1;
+
+    function getRandomFactIndex() {
+        let idx;
+        do {
+            idx = Math.floor(Math.random() * facts.length);
+        } while (idx === lastFactIndex && facts.length > 1);
+        return idx;
+    }
+
+    function showRandomFact() {
+        const idx = getRandomFactIndex();
+        lastFactIndex = idx;
+        // Animate fade-out, then fade-in
+        factDiv.classList.remove('fade-in');
+        void factDiv.offsetWidth; // Force reflow for animation restart
+        factDiv.textContent = facts[idx];
+        factDiv.classList.add('fade-in');
+        updateTwitterShare(facts[idx]);
+    }
+
+    function updateTwitterShare(fact) {
+        const tweetText = encodeURIComponent(fact + " #CrocodileFacts");
+        const tweetUrl = `https://twitter.com/intent/tweet?text=${tweetText}`;
+        twitterShareBtn.onclick = () => {
+            window.open(tweetUrl, '_blank');
+        };
+    }
+
+    // Show a random fact on page load
+    document.addEventListener('DOMContentLoaded', () => {
+        showRandomFact();
+    });
+
+    randomFactBtn.addEventListener('click', showRandomFact);
+    </script>
+</body>
+</html>
